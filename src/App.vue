@@ -1,18 +1,38 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Harmonograph
+      :frames="frames"
+    />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Harmonograph from './components/Harmonograph.vue'
 
 export default {
   name: 'app',
   components: {
-    HelloWorld
-  }
+    Harmonograph
+  },
+  data(){
+    return {
+      frames: [],
+      counter: 0,
+    };
+  },
+
+  mounted(){
+    setInterval(this.addFrame, 100);
+  },
+
+  methods: {
+    addFrame(){
+      this.frames = [
+        ...this.frames,
+        this.counter++,
+      ];
+    },
+  },
 }
 </script>
 
